@@ -12,8 +12,9 @@ struct V2
 	V2() : x(0), y(0) {} 
 
 	double norm();
+	double dot(const V2& other) const; // produto escalar
 
-	bool isInside(V2 pos, V2 WH); // check if the point is inside the rectangle pos/WH
+	bool isInside(V2 pos, V2 WH) const; // check if the point is inside the rectangle pos/WH
 };
 
 // comparaison

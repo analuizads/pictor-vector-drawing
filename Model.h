@@ -7,31 +7,39 @@
 #include "ObjAttr.h"
 #include <vector>
 #include <memory>
+#include <string>
 using namespace std;
 
-// declaration used to avoid cyclic dependency
-class Tool; 
+// forward declarations
+class Tool;
 class Button;
 class Model;
 void initApp(Model& Data);
-
+void pushUndoState(Model& Data);
 
 class Model
 {
-  public :
+public:
 
-	shared_ptr<Tool> currentTool;
+    shared_ptr<Tool> currentTool;
 
-	V2 currentMousePos;
+    V2 currentMousePos;
 
-	ObjAttr drawingOptions;
+    ObjAttr drawingOptions;
 
-	vector< shared_ptr<ObjGeom> > LObjets;
+    vector< shared_ptr<ObjGeom> > LObjets;
 
-	vector< shared_ptr<Button> > LButtons;
+    vector< shared_ptr<Button> > LButtons;
 
-	Model()
-	{
-		initApp(*this);
-	}
+    // index of selected object (-1 if none)
+    int selectedObject = -1;
+
+    // undo stack
+    vector<string> undoStack;
+
+    Model()
+    {
+        initApp(*this);
+    }
 };
+

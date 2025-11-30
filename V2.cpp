@@ -26,7 +26,7 @@ V2::V2(float  _x, float   _y) { x = (int)_x; y = (int)_y; }
 
  
 // Is the current point inside the rectangle defined by pos + W/H
-bool V2::isInside(V2 pos, V2 WH)
+bool V2::isInside(V2 pos, V2 WH) const
 {
 	int dx = this->x - pos.x;
 	int dy = this->y - pos.y;
@@ -39,6 +39,12 @@ bool V2::isInside(V2 pos, V2 WH)
 
 double V2::norm() { return sqrt(x * x + y * y); }
  
+
+// dot product
+double V2::dot(const V2& other) const 
+{ 
+	return x * other.x + y * other.y; 
+}
 
 // float comparison
 
